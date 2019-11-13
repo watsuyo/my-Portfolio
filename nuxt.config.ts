@@ -25,7 +25,23 @@ export default {
   /*
   ** Global CSS
   */
+
+  rules: [
+    {
+      test: /\.scss$/i,
+      use: [
+        // Creates `style` nodes from JS strings
+        'style-loader',
+        // Translates CSS into CommonJS
+        'css-loader',
+        // Compiles Sass to CSS
+        'sass-loader'
+      ]
+    }
+  ],
+
   css: [
+    { src: '~/assets/scss/common.scss', lang: 'scss' }
   ],
   /*
   ** Plugins to load before mounting the App
