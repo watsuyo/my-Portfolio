@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div>
     <div>
-      <h1 class="title">
+      <h1>
         Top
       </h1>
     </div>

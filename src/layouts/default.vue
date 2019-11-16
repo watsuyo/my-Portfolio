@@ -18,7 +18,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 div{
-  font-family: "Roboto";
+  font-family: $base-font;
 }
 
 </style>

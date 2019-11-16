@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="contents">
     <Top />
     <About />
     <Skils />
@@ -28,5 +28,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-
+.contents{
+  padding-top: $header-height;
+}
 </style>
