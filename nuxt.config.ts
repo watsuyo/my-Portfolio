@@ -1,5 +1,8 @@
+import path from 'path'
+import { Configuration } from '@nuxt/types'
 
-export default {
+const config: Configuration = {
+  srcDir: 'src',
   mode: 'spa',
   /*
   ** Headers of the page
@@ -16,33 +19,55 @@ export default {
     ]
   },
 
-  srcDir: 'src/',
-
   /*
   ** Customize the progress-bar color
   */
   loading: { color: '#fff' },
+
   /*
-  ** Global CSS
+  ** Nuxt.js modules
   */
+  modules: [
+    // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/axios',
+    '@nuxtjs/style-resources',
+    'nuxt-webfontloader'
+  ],
+
+  webfontloader: {
+    google: {
+      families: ['Roboto']
+    }
+  },
+
+  styleResources: {
+    scss: [
+      '~assets/scss/variable.scss',
+      '~assets/scss/common.scss'
+    ]
+  },
 
   rules: [
     {
-      test: /\.scss$/i,
-      use: [
-        // Creates `style` nodes from JS strings
-        'style-loader',
-        // Translates CSS into CommonJS
-        'css-loader',
-        // Compiles Sass to CSS
-        'sass-loader'
-      ]
+      test: /\.vue$/,
+      loader: 'vue-loader',
+      options: {
+        loaders: {
+          css: {
+            loader: 'css-loader'
+          },
+          scss: {
+            loader: 'sass-loader',
+            options: {
+              data: '@import "common.scss";',
+              includePaths: path.resolve(__dirname, './src/assets/scss/')
+            }
+          }
+        }
+      }
     }
   ],
 
-  css: [
-    { src: '~/assets/scss/common.scss', lang: 'scss' }
-  ],
   /*
   ** Plugins to load before mounting the App
   */
@@ -55,13 +80,6 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     '@nuxt/typescript-build'
-  ],
-  /*
-  ** Nuxt.js modules
-  */
-  modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
   ],
   /*
   ** Axios module configuration
@@ -80,3 +98,5 @@ export default {
     }
   }
 }
+
+export default config
